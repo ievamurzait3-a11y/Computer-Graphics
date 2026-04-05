@@ -1,0 +1,21 @@
+import cv2 as cv
+import numpy as np
+from sklearn.metrics import mean_squared_error
+
+img0 = cv.imread(r'C:\Users\ievas\Downloads\imagebw.jpg', cv.IMREAD_GRAYSCALE)
+img1 = cv.imread(r'C:\Users\ievas\Downloads\imagebw1.jpg', cv.IMREAD_GRAYSCALE)
+img2 = cv.imread(r'C:\Users\ievas\Downloads\imagebw2.jpg', cv.IMREAD_GRAYSCALE)
+img3 = cv.imread(r'C:\Users\ievas\Downloads\imagebw3.jpg', cv.IMREAD_GRAYSCALE)
+
+img0f = img0.flatten()
+img1f = img1.flatten()
+img2f = img2.flatten()
+img3f = img3.flatten()
+
+mse1 = mean_squared_error(img0f, img1f)
+mse2 = mean_squared_error(img0f, img2f)
+mse3 = mean_squared_error(img0f, img3f)
+
+print(f"MSE1: {mse1}")
+print(f"MSE2: {mse2}")
+print(f"MSE3: {mse3}")

@@ -1,0 +1,34 @@
+import cv2 as cv
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+img = cv.imread(r'C:\Users\ievas\Downloads\imagebw.jpg', cv.IMREAD_GRAYSCALE)
+equ = cv.equalizeHist(img)
+
+cv.imshow('equalized image', equ)
+cv.imwrite(r'C:\Users\ievas\Downloads\imagebw1.jpg', equ)
+
+
+
+def grayHistogram():
+    root = os.getcwd()
+    imgpath = os.path.join(root, r'C:\Users\ievas\Downloads\imagebw1.jpg')
+    img = cv.imread(imgpath, cv.IMREAD_GRAYSCALE)
+
+    hist = cv.calcHist([img], [0], None, [256], [0, 256])
+
+    plt.figure()
+    plt.plot(hist)
+    plt.xlabel('bins')
+    plt.ylabel('number of pixels')
+    plt.title('histogram_equalized')
+
+    save_path = r'C:\Users\ievas\Downloads\imagebw1h.jpg'
+    plt.savefig(save_path)
+
+    plt.show()
+
+grayHistogram()
+
+cv.waitKey(0)

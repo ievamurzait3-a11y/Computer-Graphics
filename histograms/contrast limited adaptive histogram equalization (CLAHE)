@@ -1,0 +1,35 @@
+import numpy as np
+import cv2 as cv
+import matplotlib.pyplot as plt
+import os
+
+img = cv.imread(r'C:\Users\ievas\Downloads\__pycache__\imagebw.jpg', 0)
+clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+img_clahe = clahe.apply(img)
+
+
+cv.imwrite(r'C:\Users\ievas\Downloads\imagebw3.jpg', img_clahe)
+cv.imshow('CLAHE', img_clahe)
+
+
+def grayHistogram():
+    root = os.getcwd()
+    imgpath = os.path.join(root, r'C:\Users\ievas\Downloads\imagebw3.jpg')
+    img = cv.imread(imgpath, cv.IMREAD_GRAYSCALE)
+
+    hist = cv.calcHist([img], [0], None, [256], [0, 256])
+
+    plt.figure()
+    plt.plot(hist)
+    plt.xlabel('bins')
+    plt.ylabel('number of pixels')
+    plt.title('histogram_clahe')
+
+    save_path = r'C:\Users\ievas\Downloads\imagebw3h.jpg'
+    plt.savefig(save_path)
+
+    plt.show()
+
+grayHistogram()
+
+cv.waitKey(0)
